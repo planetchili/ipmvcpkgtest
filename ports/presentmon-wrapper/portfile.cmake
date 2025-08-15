@@ -1,7 +1,15 @@
 # Include helpers
 include(${CMAKE_CURRENT_LIST_DIR}/helpers.cmake)
+
+vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH_ROOT
+    REPO           GameTechDev/PresentMon
+    REF            exp-vport-temp
+    SHA512         1d179ccbe041a42e824d865f51853b5fdc9720286028c9a558c584a7203e8898cca563e5393f9149be5fdf4db0cbef759f79bb26f2063df39fd194e80b6acc34
+)
+
 # Path to the real source project (local folder with .vcxproj and src/)
-set(SOURCE_PATH_ROOT [[C:\Users\Chili\Desktop\cpp\ipm-relay]])
+### set(SOURCE_PATH_ROOT [[C:\Users\Chili\Desktop\cpp\ipm-relay]])
 set(SOURCE_PATH_IPM "${SOURCE_PATH_ROOT}\\IntelPresentMon")
 set(SOURCE_PATH_WRAPPER_COMMON "${SOURCE_PATH_IPM}\\PresentMonAPIWrapperCommon")
 set(SOURCE_PATH_WRAPPER "${SOURCE_PATH_IPM}\\PresentMonAPIWrapper")

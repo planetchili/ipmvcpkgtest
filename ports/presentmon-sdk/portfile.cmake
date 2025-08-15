@@ -7,9 +7,15 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS _unused PREFIX FEAT FEATURES
     "dbg-log"  DBG_LOG
 )
 
+vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH_ROOT
+    REPO           GameTechDev/PresentMon
+    REF            exp-vport-temp
+    SHA512         1d179ccbe041a42e824d865f51853b5fdc9720286028c9a558c584a7203e8898cca563e5393f9149be5fdf4db0cbef759f79bb26f2063df39fd194e80b6acc34
+)
 
 # Path to the real source project (local folder with .vcxproj and src/)
-set(SOURCE_PATH_ROOT [[C:\Users\Chili\Desktop\cpp\ipm-relay]])
+### set(SOURCE_PATH_ROOT [[C:\Users\Chili\Desktop\cpp\ipm-relay]])
 set(SOURCE_PATH_IPM "${SOURCE_PATH_ROOT}\\IntelPresentMon")
 set(SOURCE_PATH_COMMON_UTILITIES "${SOURCE_PATH_IPM}\\CommonUtilities")
 set(SOURCE_PATH_VERSIONING "${SOURCE_PATH_IPM}\\Versioning")
