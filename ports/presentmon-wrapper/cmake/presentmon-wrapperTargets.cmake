@@ -18,7 +18,4 @@ target_link_libraries(presentmon-wrapper::presentmon-wrapper INTERFACE
 
   # pull in the SDK (import lib for the DLL + CommonUtilities)
   presentmon-sdk::presentmon-sdk
-  
-  # Add any required system libs if needed, e.g.:
-  # dxgi dxguid setupapi cfgmgr32 wbemuuid advapi32
 )

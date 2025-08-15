@@ -47,8 +47,6 @@ if(preproc_options)
     list(JOIN preproc_options ";" preproc_options_joined)
 endif()
 
-message(STATUS "YIKES: ${preproc_options_joined}")
-
 # Build (and optionally install) the MSBuild project
 vcpkg_msbuild_install(
     SOURCE_PATH     "${SOURCE_PATH_COMMON_UTILITIES}"

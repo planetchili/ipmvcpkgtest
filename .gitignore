@@ -1,1 +1,6 @@
-msbuild-clang/.vs
+*/.vs
+*/vcpkg_installed
+**/x64
+*.vcxproj.user
+*.args.json
+cmake-clang/build/
