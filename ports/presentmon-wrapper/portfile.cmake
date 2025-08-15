@@ -82,10 +82,8 @@ vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH_ROOT}/LICENSE.txt")
 # cmake support
 # Destination roots
 set(_pkg_share "${CURRENT_PACKAGES_DIR}/share/${PORT}")
-set(_pkg_vcpkg "${_pkg_share}/vcpkg")
 
 file(MAKE_DIRECTORY "${_pkg_share}")
-file(MAKE_DIRECTORY "${_pkg_vcpkg}")
 
 # Install pre-authored CMake package files
 file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/cmake/presentmon-wrapperConfig.cmake"
