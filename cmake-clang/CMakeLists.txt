@@ -16,12 +16,5 @@ add_executable(pmvcex_cmake src/main.cpp)
 # consuming the vcpkg ports
 find_package(presentmon-wrapper CONFIG REQUIRED)
 
-# The actual target name depends on the port's exported config.
-# Common patterns are <port>::<port> or a named target in the config.
-# Inspect: installed\*\share\presentmon-wrapper\*.cmake to confirm.
-# Replace 'presentmon-wrapper::presentmon-wrapper' with the real exported target.
+# link in libs
 target_link_libraries(pmvcex_cmake PRIVATE presentmon-wrapper::presentmon-wrapper)
-
-# If the package also exports an include-only target, you don't need manual include dirs.
-# Otherwise you can add:
-# target_include_directories(pmvcex_cmake PRIVATE ${presentmon-wrapper_INCLUDE_DIRS})
