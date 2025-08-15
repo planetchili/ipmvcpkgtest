@@ -128,7 +128,7 @@ pm_rename_logs("load")
 
 
 # Install the API headers
-file(COPY "${SOURCE_PATH_IPM}\\PresentMonAPI2\\PresentMonApi.h"
+file(COPY "${SOURCE_PATH_IPM}\\PresentMonAPI2\\PresentMonAPI.h"
      DESTINATION "${CURRENT_PACKAGES_DIR}/include/IntelPresentMon/PresentMonAPI2")
 file(COPY "${SOURCE_PATH_IPM}\\PresentMonAPI2\\PresentMonDiagnostics.h"
      DESTINATION "${CURRENT_PACKAGES_DIR}/include/IntelPresentMon/PresentMonAPI2")
