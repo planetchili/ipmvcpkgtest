@@ -1,0 +1,21 @@
+{
+  "name": "presentmon-sdk",
+  "version": "1.0.0",
+  "description": "SDK for interfacing with the PresentMon Service",
+  "dependencies": [
+    { "name": "vcpkg-msbuild", "host": true },
+    "cli11",
+    "concurrentqueue",
+    "cereal",
+    "winreg",
+    "boost-asio"
+  ],
+  "features": {
+    "custom-log": {
+      "description": "Suppress definition of the null implementation for internal logging (you must supply GetDefaultChannel())"
+    },
+    "dbg-log": {
+      "description": "Enable basic Windows debugger output implementation for internal logging"
+    }
+  }
+}

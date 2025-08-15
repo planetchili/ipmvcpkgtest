@@ -1,0 +1,9 @@
+{
+  "name": "presentmon-wrapper",
+  "version": "1.0.0",
+  "description": "Wrapper library for convenient and safe consumption of the PresentMon SDK",
+  "dependencies": [
+    { "name": "vcpkg-msbuild", "host": true },
+	"presentmon-sdk"
+  ]
+}
