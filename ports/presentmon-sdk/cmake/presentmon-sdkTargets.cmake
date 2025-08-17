@@ -19,8 +19,8 @@ set_property(TARGET presentmon-sdk::loader APPEND PROPERTY
 add_library(presentmon-sdk::common STATIC IMPORTED)
 set_target_properties(presentmon-sdk::common PROPERTIES
   IMPORTED_CONFIGURATIONS "Debug;Release"
-  IMPORTED_LOCATION_DEBUG   "${_IMPORT_PREFIX}/debug/lib/CommonUtilities.lib"
-  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/CommonUtilities.lib"
+  IMPORTED_LOCATION_DEBUG   "${_IMPORT_PREFIX}/debug/lib/IPMCommonUtilities.lib"
+  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/IPMCommonUtilities.lib"
 )
 set_property(TARGET presentmon-sdk::common APPEND PROPERTY
   MAP_IMPORTED_CONFIG_RELWITHDEBINFO Release)

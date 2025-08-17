@@ -111,7 +111,7 @@ vcpkg_msbuild_install(
     SOURCE_PATH     "${SOURCE_PATH_LOADER}"
     PROJECT_SUBPATH "PresentMonAPI2Loader.vcxproj"
     # NO_INSTALL
-	ADDITIONAL_LIBS CommonUtilities.lib Versioning.lib
+	ADDITIONAL_LIBS IPMCommonUtilities.lib IPMVersioning.lib
     OPTIONS
         /p:CustomVcpkgProps=${SOURCE_PATH_ROOT}\\vcpkg.props
         /p:CustomCommonProps=${SOURCE_PATH_IPM}\\Common.props
