@@ -11,11 +11,11 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH_ROOT
     REPO           GameTechDev/PresentMon
     REF            exp-vport-temp
-    SHA512         bf2502bf53c6a54fb07a4ddb01012705d96e14ffb19dade0fe3a84fda9080b217bf4b977829cd07b163ceac3e128975def6a53f715f844e8614105cd82cab74d
+    SHA512         94cb8bcb59923230615cb0e648bd749af993772ed740de133d522b747d9d6b11d3b7a4b0a13e5c61a3258126a4c05fd554ca769414e5c18dffb33df67fa0b3f0
 )
 
 # Path to the real source project (local folder with .vcxproj and src/)
-set(SOURCE_PATH_ROOT [[C:\Users\Chili\Desktop\cpp\ipm-relay]])
+###set(SOURCE_PATH_ROOT [[C:\Users\Chili\Desktop\cpp\ipm-relay]])
 set(SOURCE_PATH_IPM "${SOURCE_PATH_ROOT}\\IntelPresentMon")
 set(SOURCE_PATH_COMMON_UTILITIES "${SOURCE_PATH_IPM}\\CommonUtilities")
 set(SOURCE_PATH_VERSIONING "${SOURCE_PATH_IPM}\\Versioning")
