@@ -1,5 +1,7 @@
 #include <IntelPresentMon/PresentMonAPIWrapper/PresentMonAPIWrapper.h>
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 using namespace std::literals;
 
