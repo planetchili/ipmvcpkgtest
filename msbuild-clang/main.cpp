@@ -15,7 +15,7 @@ int main(int argc, const char** argv)
 		{.metric = PM_METRIC_PRESENTED_FPS, .stat = PM_STAT_AVG},
 		{.metric = PM_METRIC_GPU_TEMPERATURE, .stat = PM_STAT_AVG, .deviceId = 1},
 	};
-	auto dq = session.RegisterDyanamicQuery(qels);
+	auto dq = session.RegisterDynamicQuery(qels);
 	// data blob for receiving query results conveniently allocated using the registered query object
 	auto blobs = dq.MakeBlobContainer(1);
 

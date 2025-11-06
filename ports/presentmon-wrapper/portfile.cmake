@@ -4,8 +4,8 @@ include(${CMAKE_CURRENT_LIST_DIR}/helpers.cmake)
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH_ROOT
     REPO           GameTechDev/PresentMon
-    REF            exp-vport-temp-2
-    SHA512         2f6b5607f3f2be62cb3fd669e0439da9b5e0e568031f456dc753808e5b1246b3aed96da75329bfbeef524e8e780f2a94aba18e19cc3f980178e1c617d6857dcd
+    REF            v2.4.0
+    SHA512         2dbd76c9d63466b7721265c473cec9d3c2265cba69a41f30e0a4a79ef5fab0e2762baf1ee3530364f1dee40d1922237ac148520ad93ebd12050f766fe932250f
 )
 
 # Path to the real source project (local folder with .vcxproj and src/)
