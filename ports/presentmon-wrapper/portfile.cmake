@@ -1,11 +1,14 @@
 # Include helpers
 include(${CMAKE_CURRENT_LIST_DIR}/helpers.cmake)
 
+# patching v2.4.1 to fix extraneous include of Log.h in wrapper (not required AND causes vcpkg build to fail)
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH_ROOT
     REPO           GameTechDev/PresentMon
-    REF            v2.4.0
-    SHA512         2dbd76c9d63466b7721265c473cec9d3c2265cba69a41f30e0a4a79ef5fab0e2762baf1ee3530364f1dee40d1922237ac148520ad93ebd12050f766fe932250f
+    REF            v2.4.1
+    SHA512         16838ce604df8d59f6aebd898bf30378b96262cbc92e873fd5e7c1d15b84302f68c36dfe72a3ed5d17064b1e1044c31426cc3b60b4ebf35d403736f16b88aaeb
+    PATCHES
+        patch/rem-inc-etll.patch
 )
 
 # Path to the real source project (local folder with .vcxproj and src/)
