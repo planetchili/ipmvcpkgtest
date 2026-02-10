@@ -3,6 +3,5 @@
   "name": "pmvcex-cmake",
   "version": "0.1.0",
   "dependencies": [
-    "presentmon-wrapper"
   ]
 }

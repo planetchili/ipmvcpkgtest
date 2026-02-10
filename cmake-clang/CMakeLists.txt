@@ -12,9 +12,3 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 add_executable(pmvcex_cmake src/main.cpp)
-
-# consuming the vcpkg ports
-find_package(presentmon-wrapper CONFIG REQUIRED)
-
-# link in libs
-target_link_libraries(pmvcex_cmake PRIVATE presentmon-wrapper::presentmon-wrapper)
