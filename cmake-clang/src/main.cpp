@@ -22,6 +22,10 @@ int main(int argc, const char** argv)
 	// begin tracking target application
 	auto tc = session.TrackProcess(std::stoi(argv[1]));
 
+	auto pIntro = session.GetIntrospectionRoot();
+	auto dev = pIntro->FindDevice(1);
+	auto met = pIntro->FindMetric(PM_METRIC_APPLICATION);
+
 	while (true) {
 		// poll the tracked application using our query, result goes into our data blob
 		dq.Poll(tc, blobs);
