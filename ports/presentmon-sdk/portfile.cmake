@@ -10,8 +10,8 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS _unused PREFIX FEAT FEATURES
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH_ROOT
     REPO           GameTechDev/PresentMon
-    REF            v2.4.1
-    SHA512         16838ce604df8d59f6aebd898bf30378b96262cbc92e873fd5e7c1d15b84302f68c36dfe72a3ed5d17064b1e1044c31426cc3b60b4ebf35d403736f16b88aaeb
+    REF            v2.5.0
+    SHA512         d648826df09f7aafbb64051870b5f6d988b9d1e017d6be89ee4a9089bbce2cc4077d7266da3e4556d198117f1ecc183599cfdf96d06a3072e24de85c3cff4dd4
 )
 
 # Path to the real source project (local folder with .vcxproj and src/)
