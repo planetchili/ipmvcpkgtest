@@ -1,5 +1,6 @@
 # Include helpers
 include(${CMAKE_CURRENT_LIST_DIR}/helpers.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/../presentmon-sdk/helpers.cmake)
 
 # patching v2.4.1 to fix extraneous include of Log.h in wrapper (not required AND causes vcpkg build to fail)
 vcpkg_from_github(
@@ -14,22 +15,33 @@ vcpkg_from_github(
 set(SOURCE_PATH_IPM "${SOURCE_PATH_ROOT}\\IntelPresentMon")
 set(SOURCE_PATH_WRAPPER_COMMON "${SOURCE_PATH_IPM}\\PresentMonAPIWrapperCommon")
 set(SOURCE_PATH_WRAPPER "${SOURCE_PATH_IPM}\\PresentMonAPIWrapper")
+set(SOURCE_PATH_COMMON_UTILITIES "${SOURCE_PATH_IPM}\\CommonUtilities")
 
 # env for scripts to detect current build mode
 set(ENV{PM_VCPKG_MODE} "1")
+
+pm_install_port_msbuild_overlays(
+    "${SOURCE_PATH_IPM}"
+    "${SOURCE_PATH_COMMON_UTILITIES}"
+    "${CMAKE_CURRENT_LIST_DIR}/../presentmon-sdk/msbuild"
+    OFF
+)
+pm_msbuild_port_common_options(_pm_msbuild_opts "${SOURCE_PATH_ROOT}" "${SOURCE_PATH_IPM}" OFF)
 
 ###### Build & Install WrapperCommon ######
 
 # Build (and optionally install) the MSBuild project
 vcpkg_msbuild_install(
-    SOURCE_PATH     "${SOURCE_PATH_WRAPPER_COMMON}"
-    PROJECT_SUBPATH "PresentMonAPIWrapperCommon.vcxproj"
+    SOURCE_PATH     "${SOURCE_PATH_IPM}"
+    PROJECT_SUBPATH "PresentMonAPIWrapperCommon\\PresentMonAPIWrapperCommon.vcxproj"
     # NO_INSTALL
+    ADDITIONAL_LIBS IPMCommonUtilities.lib
     OPTIONS
-        /p:CustomCommonProps=${SOURCE_PATH_IPM}\\Common.props
-        /p:CustomRuntimeControlProps=${SOURCE_PATH_IPM}\\RuntimeControl.props
-        /p:vcSiblingIncludeDirectory=${SOURCE_PATH_ROOT}
-        /p:vcInstalledIncludeDirectory=${CURRENT_INSTALLED_DIR}\\include
+        ${_pm_msbuild_opts}
+    OPTIONS_DEBUG
+        /p:vcPortingLibdir=${CURRENT_INSTALLED_DIR}\\debug\\lib
+    OPTIONS_RELEASE
+        /p:vcPortingLibdir=${CURRENT_INSTALLED_DIR}\\lib
 )
 
 # Install all headers recursively from src/
@@ -47,14 +59,12 @@ pm_rename_logs("wc")
 
 # Build (and optionally install) the MSBuild project
 vcpkg_msbuild_install(
-    SOURCE_PATH     "${SOURCE_PATH_WRAPPER}"
-    PROJECT_SUBPATH "PresentMonAPIWrapper.vcxproj"
+    SOURCE_PATH     "${SOURCE_PATH_IPM}"
+    PROJECT_SUBPATH "PresentMonAPIWrapper\\PresentMonAPIWrapper.vcxproj"
     # NO_INSTALL
+    ADDITIONAL_LIBS IPMCommonUtilities.lib PresentMonAPIWrapperCommon.lib
     OPTIONS
-        /p:CustomCommonProps=${SOURCE_PATH_IPM}\\Common.props
-        /p:CustomRuntimeControlProps=${SOURCE_PATH_IPM}\\RuntimeControl.props
-        /p:vcSiblingIncludeDirectory=${SOURCE_PATH_ROOT}
-        /p:vcInstalledIncludeDirectory=${CURRENT_INSTALLED_DIR}\\include
+        ${_pm_msbuild_opts}
 )
 
 # Install all headers recursively from src/

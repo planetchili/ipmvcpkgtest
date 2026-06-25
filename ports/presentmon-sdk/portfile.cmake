@@ -36,6 +36,14 @@ if(EXISTS "${SOURCE_PATH_LOADER}\\vcpkg_installed")
 	file(REMOVE_RECURSE "${SOURCE_PATH_LOADER}\\vcpkg_installed")
 endif()
 
+pm_install_port_msbuild_overlays(
+    "${SOURCE_PATH_IPM}"
+    "${SOURCE_PATH_COMMON_UTILITIES}"
+    "${CMAKE_CURRENT_LIST_DIR}/msbuild"
+    "${FEAT_DBG_LOG}"
+)
+pm_msbuild_port_common_options(_pm_msbuild_opts "${SOURCE_PATH_ROOT}" "${SOURCE_PATH_IPM}" "${FEAT_DBG_LOG}")
+
 
 ###### Build & Install CommonUtilities ######
 
@@ -57,16 +65,12 @@ endif()
 
 # Build (and optionally install) the MSBuild project
 vcpkg_msbuild_install(
-    SOURCE_PATH     "${SOURCE_PATH_COMMON_UTILITIES}"
-    PROJECT_SUBPATH "CommonUtilities.vcxproj"
+    SOURCE_PATH     "${SOURCE_PATH_IPM}"
+    PROJECT_SUBPATH "CommonUtilities\\CommonUtilities.vcxproj"
     # NO_INSTALL
     OPTIONS
-		/p:vcPreDefs=PM_PORT_DEFINE_NULL_CHANNEL_GETTER_
-        /p:CustomVcpkgProps=${SOURCE_PATH_ROOT}\\vcpkg.props
-        /p:CustomCommonProps=${SOURCE_PATH_IPM}\\Common.props
-        /p:CustomRuntimeControlProps=${SOURCE_PATH_IPM}\\RuntimeControl.props
-        /p:vcSiblingIncludeDirectory=${SOURCE_PATH_ROOT}
-        /p:vcInstalledIncludeDirectory=${CURRENT_INSTALLED_DIR}\\include
+        /p:vcPreDefs=${preproc_options_joined}
+        ${_pm_msbuild_opts}
 )
 
 # Install all headers recursively from src/
@@ -84,15 +88,11 @@ pm_rename_logs("comu")
 
 # Build (and optionally install) the MSBuild project
 vcpkg_msbuild_install(
-    SOURCE_PATH     "${SOURCE_PATH_VERSIONING}"
-    PROJECT_SUBPATH "Versioning.vcxproj"
+    SOURCE_PATH     "${SOURCE_PATH_IPM}"
+    PROJECT_SUBPATH "Versioning\\Versioning.vcxproj"
     # NO_INSTALL
     OPTIONS
-        /p:CustomVcpkgProps=${SOURCE_PATH_ROOT}\\vcpkg.props
-        /p:CustomCommonProps=${SOURCE_PATH_IPM}\\Common.props
-        /p:CustomRuntimeControlProps=${SOURCE_PATH_IPM}\\RuntimeControl.props
-        /p:vcSiblingIncludeDirectory=${SOURCE_PATH_ROOT}
-        /p:vcInstalledIncludeDirectory=${CURRENT_INSTALLED_DIR}\\include
+        ${_pm_msbuild_opts}
 )
 
 # Install all headers recursively from src/
@@ -108,16 +108,12 @@ pm_rename_logs("ver")
 	 
 ###### Build & Install Loader ######
 vcpkg_msbuild_install(
-    SOURCE_PATH     "${SOURCE_PATH_LOADER}"
-    PROJECT_SUBPATH "PresentMonAPI2Loader.vcxproj"
+    SOURCE_PATH     "${SOURCE_PATH_IPM}"
+    PROJECT_SUBPATH "PresentMonAPI2Loader\\PresentMonAPI2Loader.vcxproj"
     # NO_INSTALL
 	ADDITIONAL_LIBS IPMCommonUtilities.lib IPMVersioning.lib
     OPTIONS
-        /p:CustomVcpkgProps=${SOURCE_PATH_ROOT}\\vcpkg.props
-        /p:CustomCommonProps=${SOURCE_PATH_IPM}\\Common.props
-        /p:CustomRuntimeControlProps=${SOURCE_PATH_IPM}\\RuntimeControl.props
-        /p:vcSiblingIncludeDirectory=${SOURCE_PATH_ROOT}
-        /p:vcInstalledIncludeDirectory=${CURRENT_INSTALLED_DIR}\\include
+        ${_pm_msbuild_opts}
     OPTIONS_DEBUG
         /p:vcPortingLibdir=${CURRENT_PACKAGES_DIR}\\debug\\lib
     OPTIONS_RELEASE

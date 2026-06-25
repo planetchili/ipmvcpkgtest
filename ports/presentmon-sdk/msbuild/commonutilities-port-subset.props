@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Port-only CommonUtilities build profile: omit translation units that require
+  boost-asio, cli11, or other SDK-wrapper-unneeded subsystems.
+  Controlled by MSBuild properties passed from the vcpkg portfile.
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Condition="'$(PM_VCPKG_COMU_PORT_SUBSET)' == '1'">
+    <!-- CLI (cli11) -->
+    <ClCompile Update="cli\CliFramework.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <!-- ASIO pipes + coroutine mutex -->
+    <ClCompile Update="pipe\CoroMutex.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="pipe\Pipe.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <!-- Inter-process log marshalling (asio / cereal / concurrentqueue) -->
+    <ClCompile Update="log\NamedPipeMarshallSender.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="log\NamedPipeMarshallReceiver.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="log\MarshallDriver.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="log\DiagnosticDriver.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="log\ChannelFlusher.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <!-- Metrics calculator (not used by SDK / wrapper ports) -->
+    <ClCompile Update="mc\MetricsCalculator.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="mc\MetricsCalculatorCpuGpu.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="mc\MetricsCalculatorDisplay.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="mc\MetricsCalculatorInput.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="mc\MetricsCalculatorInstrumented.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="mc\MetricsCalculatorAnimation.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="mc\MetricsTypes.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="mc\SwapChainState.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="mc\UnifiedSwapChain.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <!-- WMI / COM helpers not needed for SDK -->
+    <ClCompile Update="win\com\ComManager.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="win\com\ProcessSpawnSink.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="win\com\WbemConnection.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="win\com\WbemListener.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="win\com\WbemSink.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <!-- Generated reflection TU (full PresentMon only) -->
+    <ClCompile Update="ref\GeneratedReflection.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+  </ItemGroup>
+  <!-- Null-channel SDK default: no Channel worker thread (concurrentqueue) -->
+  <ItemGroup Condition="'$(PM_VCPKG_COMU_PORT_SUBSET)' == '1' And '$(PM_VCPKG_COMU_DBG_LOG)' != '1'">
+    <ClCompile Update="log\Channel.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="log\MsvcDebugDriver.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="log\BasicFileDriver.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="log\SimpleFileStrategy.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="log\StdioDriver.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="log\CopyDriver.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+    <ClCompile Update="log\TextFormatter.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
+  </ItemGroup>
+</Project>
