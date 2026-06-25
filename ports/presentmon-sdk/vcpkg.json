@@ -5,6 +5,7 @@
   "dependencies": [
     { "name": "vcpkg-msbuild", "host": true },
     "cereal",
+    "concurrentqueue",
     "winreg"
   ],
   "features": {
@@ -12,10 +13,7 @@
       "description": "Suppress definition of the null implementation for internal logging (you must supply GetDefaultChannel())"
     },
     "dbg-log": {
-      "description": "Enable basic Windows debugger output implementation for internal logging",
-      "dependencies": [
-        "concurrentqueue"
-      ]
+      "description": "Enable basic Windows debugger output implementation for internal logging"
     }
   }
 }

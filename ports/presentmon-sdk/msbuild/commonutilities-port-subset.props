@@ -15,7 +15,6 @@
     <ClCompile Update="log\NamedPipeMarshallSender.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
     <ClCompile Update="log\NamedPipeMarshallReceiver.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
     <ClCompile Update="log\MarshallDriver.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
-    <ClCompile Update="log\DiagnosticDriver.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
     <ClCompile Update="log\ChannelFlusher.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
     <!-- Metrics calculator (not used by SDK / wrapper ports) -->
     <ClCompile Update="mc\MetricsCalculator.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
@@ -36,9 +35,8 @@
     <!-- Generated reflection TU (full PresentMon only) -->
     <ClCompile Update="ref\GeneratedReflection.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
   </ItemGroup>
-  <!-- Null-channel SDK default: no Channel worker thread (concurrentqueue) -->
+  <!-- Null-channel SDK default: no Channel worker thread unless diagnostics need it -->
   <ItemGroup Condition="'$(PM_VCPKG_COMU_PORT_SUBSET)' == '1' And '$(PM_VCPKG_COMU_DBG_LOG)' != '1'">
-    <ClCompile Update="log\Channel.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
     <ClCompile Update="log\MsvcDebugDriver.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
     <ClCompile Update="log\BasicFileDriver.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
     <ClCompile Update="log\SimpleFileStrategy.cpp"><ExcludedFromBuild>true</ExcludedFromBuild></ClCompile>
